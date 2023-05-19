@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kursovaya
 {
-    internal class Term
+    public class Term
     {
         public string Name { get; set; }
         public string Definition { get; set; }
@@ -15,6 +15,10 @@ namespace Kursovaya
         public Term()
         {
             RelatedTerms = new List<string>();
+        }
+        public override string ToString()
+        {
+            return Name; 
         }
     }
 }

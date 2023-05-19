@@ -43,15 +43,28 @@ namespace Kursovaya
             listBox1.Items.Clear();
             foreach (Term term in results)
             {
-                listBox1.Items.Add(term.Name);
+                listBox1.Items.Add(term);
             }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Получаем выбранный термин
+            Term selectedTerm = (Term)listBox1.SelectedItem;
 
+            // Создаем экземпляр новой формы и передаем выбранный термин
+            FormEditTerm formEditTerm = new FormEditTerm(selectedTerm, terms);
+
+            // Закрываем текущую форму
+            this.Hide();
+
+            // Открываем новую форму
+            formEditTerm.Show();
         }
-
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             // Створюємо екземпляр нової форми
@@ -62,6 +75,23 @@ namespace Kursovaya
 
             // Показуємо нову форму
             formAddTerm.Show();
+        }
+
+        private void DeleteAll_Click(object sender, EventArgs e)
+        {
+            // Очищаем список терминов
+            terms.Clear();
+
+            // Зберігаємо зміни в файл
+            SaveData();
+
+            // Обновляемо список терминов на форме
+            listBox1.Items.Clear();
+        }
+        private void SaveData()
+        {
+            string json = JsonConvert.SerializeObject(terms, Formatting.Indented);
+            File.WriteAllText("terms.json", json);
         }
     }
 }

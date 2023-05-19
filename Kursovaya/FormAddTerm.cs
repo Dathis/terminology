@@ -19,6 +19,19 @@ namespace Kursovaya
         {
             InitializeComponent();
             this.terms = terms;
+            LoadData();
+        }
+        private void LoadData()
+        {
+            if (File.Exists("terms.json"))
+            {
+                string json = File.ReadAllText("terms.json");
+                terms = JsonConvert.DeserializeObject<List<Term>>(json);
+            }
+            else
+            {
+                terms = new List<Term>();
+            }
         }
 
         private void FormAddTerm_Load(object sender, EventArgs e)

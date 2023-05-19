@@ -32,6 +32,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonAddTerm = new System.Windows.Forms.Button();
+            this.DeleteAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -67,6 +68,7 @@
             // 
             // buttonAddTerm
             // 
+            this.buttonAddTerm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAddTerm.Location = new System.Drawing.Point(523, 501);
             this.buttonAddTerm.Name = "buttonAddTerm";
             this.buttonAddTerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -76,11 +78,26 @@
             this.buttonAddTerm.UseVisualStyleBackColor = true;
             this.buttonAddTerm.Click += new System.EventHandler(this.button2_Click);
             // 
+            // DeleteAll
+            // 
+            this.DeleteAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeleteAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DeleteAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DeleteAll.Location = new System.Drawing.Point(30, 356);
+            this.DeleteAll.Name = "DeleteAll";
+            this.DeleteAll.Size = new System.Drawing.Size(232, 27);
+            this.DeleteAll.TabIndex = 4;
+            this.DeleteAll.Text = "Видалити всі терміни";
+            this.DeleteAll.UseVisualStyleBackColor = false;
+            this.DeleteAll.Click += new System.EventHandler(this.DeleteAll_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Controls.Add(this.DeleteAll);
             this.Controls.Add(this.buttonAddTerm);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
@@ -101,5 +118,6 @@
         private TextBox textBox1;
         private Button button1;
         private Button buttonAddTerm;
+        private Button DeleteAll;
     }
 }
