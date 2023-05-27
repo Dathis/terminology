@@ -27,28 +27,27 @@ namespace Kursovaya
 
         private void FormEditTerm_Load(object sender, EventArgs e)
         {
+            labelTermName.Text = currentTerm.Name;
+            textBoxTermDefinition.Text = currentTerm.Definition;
+            listBoxRelatedTerms.Items.Clear();
+            foreach (var relatedTerm in currentTerm.RelatedTerms)
+            {
+                listBoxRelatedTerms.Items.Add(relatedTerm);
+            }
 
         }
 
-        private void labelTermName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxTermDefinition_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void back_Click(object sender, EventArgs e)
         {
-            // Створюємо екземпляр нової форми
-            Form1 form1 = new Form1();
 
-            // Закриваємо поточну форму
+            MainForm form1 = new MainForm();
+
+
             this.Hide();
 
-            // Показуємо нову форму
+     
             form1.Show();
         }
 
@@ -68,14 +67,19 @@ namespace Kursovaya
 
         private void saveTermin_Click_1(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxTermDefinition.Text))
+            {
+                MessageBox.Show("Будь ласка, введіть назву та визначення терміну", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string name = labelTermName.Text;
             string definition = textBoxTermDefinition.Text;
 
-            // Знаходимо в списку вибраний термін
+
             Term termToEdit = terms.Find(t => t.Name == name);
             if (termToEdit != null)
             {
-                // Обновляемо визначення терміна
+             
                 termToEdit.Definition = definition;
                 saveTermin.Visible = false;
                 Edit.Visible = true;
@@ -83,32 +87,53 @@ namespace Kursovaya
             }
             else
             {
-                // Якщо терміна немає в списку, створюємо новий
+                
                 Term newTerm = new Term { Name = name, Definition = definition, RelatedTerms = new List<string>() };
                 if (terms == null)
                 {
                     terms = new List<Term>();
                 }
-                // Додаємо новий термін до списку
+               
                 terms.Add(newTerm);
             }
 
-            // Зберігаємо зміни в файл
+        
             SaveData();
         }
 
         private void deleteTerm_Click(object sender, EventArgs e)
         {
-            // Удаляем выбранный термин из списка
+            // Удаляем термин из всех связанных терминов
+            foreach (var relatedTermName in currentTerm.RelatedTerms)
+            {
+                var relatedTerm = terms.Find(t => t.Name == relatedTermName);
+                if (relatedTerm != null)
+                {
+                    relatedTerm.RelatedTerms.Remove(currentTerm.Name);
+                }
+            }
             terms.Remove(currentTerm);
 
-            // Сохраняем изменения в файле
+           
             SaveData();
 
-            // Возвращаемся на главную форму
-            Form1 form1 = new Form1();
+           
+            MainForm form1 = new MainForm();
             this.Hide();
             form1.Show();
+        }
+
+        private void listBoxRelatedTerms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedTermName = listBoxRelatedTerms.SelectedItem.ToString();
+
+            Term selectedTerm = terms.Find(t => t.Name == selectedTermName);
+            if (selectedTerm != null)
+            {
+                FormEditTerm formEditTerm = new FormEditTerm(selectedTerm, terms);
+                this.Hide();
+                formEditTerm.Show();
+            }
         }
     }
     

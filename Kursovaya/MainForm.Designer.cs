@@ -1,6 +1,6 @@
 ﻿namespace Kursovaya
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,43 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.termsListBox = new System.Windows.Forms.ListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
             this.buttonAddTerm = new System.Windows.Forms.Button();
             this.DeleteAll = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listBox1
+            // termsListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 19;
-            this.listBox1.Location = new System.Drawing.Point(30, 137);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(739, 213);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.termsListBox.FormattingEnabled = true;
+            this.termsListBox.ItemHeight = 19;
+            this.termsListBox.Location = new System.Drawing.Point(30, 137);
+            this.termsListBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.termsListBox.Name = "termsListBox";
+            this.termsListBox.Size = new System.Drawing.Size(739, 213);
+            this.termsListBox.TabIndex = 0;
+            this.termsListBox.SelectedIndexChanged += new System.EventHandler(this.termsListBox_SelectedIndexChanged);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(30, 78);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(516, 27);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.Size = new System.Drawing.Size(517, 27);
+            this.textBox1.TabIndex = 7;
             // 
-            // button1
+            // searchButton
             // 
-            this.button1.Location = new System.Drawing.Point(554, 78);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 27);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Пошук";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.searchButton.Location = new System.Drawing.Point(554, 78);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(162, 27);
+            this.searchButton.TabIndex = 2;
+            this.searchButton.Text = "Пошук";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // buttonAddTerm
             // 
@@ -76,7 +76,7 @@
             this.buttonAddTerm.TabIndex = 3;
             this.buttonAddTerm.Text = "Додати новий термін";
             this.buttonAddTerm.UseVisualStyleBackColor = true;
-            this.buttonAddTerm.Click += new System.EventHandler(this.button2_Click);
+            this.buttonAddTerm.Click += new System.EventHandler(this.buttonAddTerm_Click);
             // 
             // DeleteAll
             // 
@@ -92,19 +92,39 @@
             this.DeleteAll.UseVisualStyleBackColor = false;
             this.DeleteAll.Click += new System.EventHandler(this.DeleteAll_Click);
             // 
-            // Form1
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(134, 19);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Назва терміну";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(30, 115);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(252, 19);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Список знайдених термінів";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.DeleteAll);
             this.Controls.Add(this.buttonAddTerm);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.searchButton);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.termsListBox);
             this.Font = new System.Drawing.Font("Gotham Pro Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Terms DB";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -114,10 +134,12 @@
 
         #endregion
 
-        private ListBox listBox1;
+        private ListBox termsListBox;
         private TextBox textBox1;
-        private Button button1;
+        private Button searchButton;
         private Button buttonAddTerm;
         private Button DeleteAll;
+        private Label label1;
+        private Label label2;
     }
 }

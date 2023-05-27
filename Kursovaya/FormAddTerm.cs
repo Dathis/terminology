@@ -14,6 +14,7 @@ namespace Kursovaya
     
     public partial class FormAddTerm : Form
     {
+        private Term newTerm;
         private List<Term> terms;
         public FormAddTerm()
         {
@@ -33,43 +34,55 @@ namespace Kursovaya
                 terms = new List<Term>();
             }
         }
-
+        
         private void FormAddTerm_Load(object sender, EventArgs e)
         {
+            newTerm = new Term { RelatedTerms = new List<string>() };
+            foreach (Term term in terms)
+            {
+                listBoxRelatedTerms.Items.Add(term.Name);
+            }
 
         }
 
-        private void textBoxTermName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxTermDefinition_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void buttonAddTerm_Click(object sender, EventArgs e)
         {
-            // Отримуємо введені дані
-            string name = textBoxTermName.Text;
-            string definition = textBoxTermDefinition.Text;
-
+            if (string.IsNullOrWhiteSpace(textBoxTermName.Text) || string.IsNullOrWhiteSpace(textBoxTermDefinition.Text))
+            {
+                MessageBox.Show("Будь ласка, введіть назву та визначення терміну", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (terms.Any(t => t.Name == textBoxTermName.Text))
+            {
+                MessageBox.Show("Такий термін вже існує", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             // Створюємо новий термін
-            Term newTerm = new Term { Name = name, Definition = definition, RelatedTerms = new List<string>() };
+            newTerm.Name = textBoxTermName.Text;
+            newTerm.Definition = textBoxTermDefinition.Text;
             if (terms == null)
             {
                 terms = new List<Term>();
             }
-            // Додаємо новий термін до списку
             terms.Add(newTerm);
+            foreach (var relatedTermName in newTerm.RelatedTerms)
+            {
+                var relatedTerm = terms.Find(t => t.Name == relatedTermName);
+                if (relatedTerm != null && !relatedTerm.RelatedTerms.Contains(newTerm.Name))
+                {
+                    relatedTerm.RelatedTerms.Add(newTerm.Name);
+                }
+            }
 
-            // Очищуємо текстові поля
             textBoxTermName.Clear();
             textBoxTermDefinition.Clear();
 
-            // Зберігаємо зміни в файл
             SaveData();
+            //ініціалізуємо новий термін 
+            newTerm = new Term { RelatedTerms = new List<string>() };
+
         }
         private void SaveData()
         {
@@ -79,14 +92,26 @@ namespace Kursovaya
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Створюємо екземпляр нової форми
-            Form1 form1 = new Form1();
-
-            // Закриваємо поточну форму
+            MainForm form1 = new MainForm();
             this.Hide();
-
-            // Показуємо нову форму
             form1.Show();
+        }
+
+       
+
+        private void buttonAddRelation_Click(object sender, EventArgs e)
+        {
+            
+            string selectedTerm = listBoxRelatedTerms.SelectedItem.ToString();
+
+            if (!newTerm.RelatedTerms.Contains(selectedTerm))
+            {
+                newTerm.RelatedTerms.Add(selectedTerm);
+            }
+            else
+            {
+                MessageBox.Show("Термін уже зв'язан.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

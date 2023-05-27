@@ -35,6 +35,8 @@
             this.deleteTerm = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
             this.saveTermin = new System.Windows.Forms.Button();
+            this.listBoxRelatedTerms = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -55,7 +57,6 @@
             this.labelTermName.Size = new System.Drawing.Size(72, 23);
             this.labelTermName.TabIndex = 1;
             this.labelTermName.Text = "label2";
-            this.labelTermName.Click += new System.EventHandler(this.labelTermName_Click);
             // 
             // textBoxTermDefinition
             // 
@@ -63,9 +64,8 @@
             this.textBoxTermDefinition.Location = new System.Drawing.Point(12, 76);
             this.textBoxTermDefinition.Multiline = true;
             this.textBoxTermDefinition.Name = "textBoxTermDefinition";
-            this.textBoxTermDefinition.Size = new System.Drawing.Size(776, 252);
+            this.textBoxTermDefinition.Size = new System.Drawing.Size(776, 218);
             this.textBoxTermDefinition.TabIndex = 2;
-            this.textBoxTermDefinition.TextChanged += new System.EventHandler(this.textBoxTermDefinition_TextChanged);
             // 
             // Edit
             // 
@@ -111,11 +111,33 @@
             this.saveTermin.Visible = false;
             this.saveTermin.Click += new System.EventHandler(this.saveTermin_Click_1);
             // 
+            // listBoxRelatedTerms
+            // 
+            this.listBoxRelatedTerms.FormattingEnabled = true;
+            this.listBoxRelatedTerms.ItemHeight = 20;
+            this.listBoxRelatedTerms.Location = new System.Drawing.Point(12, 334);
+            this.listBoxRelatedTerms.Name = "listBoxRelatedTerms";
+            this.listBoxRelatedTerms.Size = new System.Drawing.Size(234, 44);
+            this.listBoxRelatedTerms.TabIndex = 7;
+            this.listBoxRelatedTerms.SelectedIndexChanged += new System.EventHandler(this.listBoxRelatedTerms_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Gotham Pro", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(12, 312);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(155, 19);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Зв\'язані терміни";
+            // 
             // FormEditTerm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.listBoxRelatedTerms);
             this.Controls.Add(this.saveTermin);
             this.Controls.Add(this.back);
             this.Controls.Add(this.deleteTerm);
@@ -140,5 +162,7 @@
         private Button deleteTerm;
         private Button back;
         private Button saveTermin;
+        private ListBox listBoxRelatedTerms;
+        private Label label2;
     }
 }

@@ -32,33 +32,35 @@
             this.textBoxTermDefinition = new System.Windows.Forms.TextBox();
             this.buttonAddTerm = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonAddRelation = new System.Windows.Forms.Button();
+            this.listBoxRelatedTerms = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // textBoxTermName
             // 
-            this.textBoxTermName.Location = new System.Drawing.Point(13, 44);
+            this.textBoxTermName.Location = new System.Drawing.Point(12, 61);
             this.textBoxTermName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxTermName.Name = "textBoxTermName";
             this.textBoxTermName.Size = new System.Drawing.Size(756, 24);
             this.textBoxTermName.TabIndex = 0;
-            this.textBoxTermName.TextChanged += new System.EventHandler(this.textBoxTermName_TextChanged);
             // 
             // textBoxTermDefinition
             // 
-            this.textBoxTermDefinition.Location = new System.Drawing.Point(13, 89);
+            this.textBoxTermDefinition.Location = new System.Drawing.Point(13, 157);
             this.textBoxTermDefinition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxTermDefinition.Multiline = true;
             this.textBoxTermDefinition.Name = "textBoxTermDefinition";
             this.textBoxTermDefinition.Size = new System.Drawing.Size(756, 219);
             this.textBoxTermDefinition.TabIndex = 1;
-            this.textBoxTermDefinition.TextChanged += new System.EventHandler(this.textBoxTermDefinition_TextChanged);
             // 
             // buttonAddTerm
             // 
-            this.buttonAddTerm.Location = new System.Drawing.Point(229, 314);
+            this.buttonAddTerm.Location = new System.Drawing.Point(13, 382);
             this.buttonAddTerm.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonAddTerm.Name = "buttonAddTerm";
-            this.buttonAddTerm.Size = new System.Drawing.Size(324, 43);
+            this.buttonAddTerm.Size = new System.Drawing.Size(152, 43);
             this.buttonAddTerm.TabIndex = 2;
             this.buttonAddTerm.Text = "Додати термін";
             this.buttonAddTerm.UseVisualStyleBackColor = true;
@@ -74,11 +76,54 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Назва терміну";
+            
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 137);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(164, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Визначення терміну";
+       
+            // 
+            // buttonAddRelation
+            // 
+            this.buttonAddRelation.Location = new System.Drawing.Point(619, 382);
+            this.buttonAddRelation.Name = "buttonAddRelation";
+            this.buttonAddRelation.Size = new System.Drawing.Size(149, 43);
+            this.buttonAddRelation.TabIndex = 6;
+            this.buttonAddRelation.Text = "Зв\'язати термін";
+            this.buttonAddRelation.UseVisualStyleBackColor = true;
+            this.buttonAddRelation.Click += new System.EventHandler(this.buttonAddRelation_Click);
+            // 
+            // listBoxRelatedTerms
+            // 
+            this.listBoxRelatedTerms.FormattingEnabled = true;
+            this.listBoxRelatedTerms.ItemHeight = 17;
+            this.listBoxRelatedTerms.Location = new System.Drawing.Point(469, 438);
+            this.listBoxRelatedTerms.Name = "listBoxRelatedTerms";
+            this.listBoxRelatedTerms.Size = new System.Drawing.Size(299, 106);
+            this.listBoxRelatedTerms.TabIndex = 7;
+            // 
             // FormAddTerm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Controls.Add(this.listBoxRelatedTerms);
+            this.Controls.Add(this.buttonAddRelation);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonAddTerm);
             this.Controls.Add(this.textBoxTermDefinition);
@@ -99,5 +144,9 @@
         private TextBox textBoxTermDefinition;
         private Button buttonAddTerm;
         private Button button1;
+        private Label label1;
+        private Label label2;
+        private Button buttonAddRelation;
+        private ListBox listBoxRelatedTerms;
     }
 }
